@@ -6,15 +6,20 @@ import (
 )
 
 func main() {
-	fmt.Println(median([]int{1, 2, 3, 4, 5}))
-	fmt.Println(median([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}))
+	fmt.Println(median([]float64{1, 2, 3, 4, 5}))
+	fmt.Println(median([]float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}))
 }
 
-func median(num []int) float64 {
-	sort.Ints(num)
-	if len(num)%2 == 0 {
-		return float64(num[len(num)/2-1]+num[len(num)/2]) / 2
-	} else {
-		return float64(num[len(num)/2])
-	}
+func median(num []float64) float64 {
+	//work on a copy of the array
+	vals := make([]float64, len(num))
+	copy(vals, num)
+	sort.Float64s(vals)
+
+	i := len(vals) / 2
+	if len(vals)%2 == 1 {
+		return vals[i]
+	}	
+	return (vals[i-1] + vals[i]) / 2
 }
+
