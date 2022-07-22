@@ -26,12 +26,11 @@ func killContainer (fileName string) error {
 	log.Printf("Something container %s", cid)
 
 	if err := exec.Command("docker", "rm", "-f", cid).Run(); err != nil {
-		return fmt.Errorf("Failed to stop container %s: %v", cid, err)
+		return fmt.Errorf("failed to stop container %s: %v", cid, err)
 	}
 		return nil
 }
 
 func isValidID(cid string) bool {
 	return len(cid) == 12 || len(cid) == 64 	
-
 }
